@@ -34,7 +34,7 @@ function App() {
       </form>
       {/*Passing the state and functions as props */}
       <ToDoList
-      items={todos}
+      todos={todos}
       onToggle={toggleTask}
       onDelete={deleteTask}
       onEdit={editText}
