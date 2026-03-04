@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 function ToDoItem(props){
     const [isEditing,setIsEditing] = useState(false);
     const [editText,setEditText] = useState(props.todo.text)
@@ -9,7 +10,7 @@ function ToDoItem(props){
         setIsEditing(false);
       };
     return (
-        <div className="todo-item">
+        <div className={`todo-item ${props.todo.completed ? 'completed' : ''}`}>
             {isEditing ? (
                 <>
                 <input value={editText} onChange={(e)=>setEditText(e.target.value)}/>
@@ -18,13 +19,19 @@ function ToDoItem(props){
             ):
             (
                 <>
-                    <span onClick={() => props.onToggle(props.todo.id)} className="todo-text">
+                    <span onClick={() => props.onToggle(props.todo.id)} className="text">
                         {console.log(props.todo.completed)}
                         {props.todo.text}
                     </span>
                     <div className="actions">
-                        <button onClick={() => setIsEditing(true)}>Edit</button>
-                        <button onClick={() => props.onDelete(props.todo.id)}>Delete</button>
+                        <input 
+                            type="checkbox" 
+                            className="todo-checkbox"
+                            checked={props.todo.completed} 
+                            onChange={() => props.onToggle(props.todo.id)} 
+                        />
+                        <button id="edit-btn" onClick={() => setIsEditing(true)}>Edit</button>
+                        <button id="del-btn" onClick={() => props.onDelete(props.todo.id)}>Delete</button>
                     </div>
                 </>
             )}

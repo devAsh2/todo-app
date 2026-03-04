@@ -9,7 +9,7 @@ function App() {
 
   const handleAdd = (e)=>{
     e.preventDefault();
-    if(!input.trim) return;
+    if(!input.trim()) return;
     setTodos([...todos,{id:Date.now,text:input,completed:false}]);
     setInput('');
   }
@@ -29,8 +29,8 @@ function App() {
     <div className='container'>
       <Header/>
       <form onSubmit={handleAdd}>
-        <input value={input} onChange={(e)=>setInput(e.target.value)}/>
-        <button type='submit'>Add task</button>
+        <input id="task-ipt" value={input} onChange={(e)=>setInput(e.target.value)} placeholder='add task here'/>
+        <button id="add-task" type='submit'>Add task</button>
       </form>
       {/*Passing the state and functions as props */}
       <ToDoList
